@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>iFood Black Friday · Grupo ROB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #faf6f0;
+    --surface: #ffffff;
+    --surface-2: #f3ebe0;
+    --border: #e4d8c8;
+    --text: #2a221a;
+    --text-dim: #6b5c4c;
+    --olv: #c8402a;
+    --olv-soft: #fbe9e4;
+    --ogro: #5a3a24;
+    --ogro-soft: #efe4d6;
+    --tmk: #8a2e3a;
+    --tmk-soft: #f6e4e6;
+    --ifood-red: #ea1d2c;
+    --ifood-soft: #fde8e9;
+    --pending: #a3721f;
+    --pending-soft: #faf0dc;
+    --confirmed: #3f7a52;
+    --confirmed-soft: #e8f3ea;
+    --shadow: 0 1px 2px rgba(42,34,26,0.06), 0 8px 24px -12px rgba(42,34,26,0.18);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Work Sans", -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  .page { max-width: 900px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  header.doc-head { margin-bottom: 48px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4.6vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 14px;
+  }
+  .doc-sub { font-size: 16px; color: var(--text-dim); max-width: 62ch; margin: 0 0 20px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .meta-chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+  }
+
+  section.part { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .part-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .part-title { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 26px; }
+  .part-title.ifood { color: var(--ifood-red); }
+  .part-title.olv { color: var(--olv); }
+  .part-title.ogro { color: var(--ogro); }
+  .part-title.tmk { color: var(--tmk); }
+  .part-note { font-size: 14.5px; color: var(--text-dim); margin: 4px 0 28px; max-width: 66ch; }
+  .brand-dates {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-top: 8px; }
+  .impact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 20px 20px;
+  }
+  .impact-cat { font-size: 12px; color: var(--text-dim); margin: 0 0 4px; }
+  .impact-name { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 19px; margin: 0 0 16px; }
+  .impact-label { font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ifood-red); margin: 0 0 3px; font-weight: 500; }
+  .impact-value { font-size: 18px; font-weight: 600; margin: 0; }
+  .impact-value.tbd { color: var(--pending); }
+  .bonus-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--confirmed-soft);
+    color: var(--confirmed);
+  }
+  .channels-row { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 18px; font-size: 14px; color: var(--text-dim); }
+  .channels-row strong { color: var(--text); }
+
+  .block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 24px 26px;
+    margin-bottom: 18px;
+  }
+  .block-title {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .field-label { font-size: 13px; color: var(--text-dim); margin: 0 0 3px; }
+  .field-value { font-size: 15px; margin: 0; }
+  .mote-value { font-family: "Fraunces", Georgia, serif; font-weight: 500; font-size: 18px; margin: 0; }
+  .option-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .option-list li {
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 10px 13px; background: var(--surface-2); border-radius: 8px; border: 1px solid var(--border);
+    font-size: 14.5px;
+  }
+  .opt-num { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--text-dim); flex-shrink: 0; }
+
+  .status-tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-tag.pending { background: var(--pending-soft); color: var(--pending); }
+  .status-tag.confirmed { background: var(--confirmed-soft); color: var(--confirmed); }
+
+  .palette-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+  .swatch { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 84px; }
+  .swatch-color { width: 64px; height: 64px; border-radius: 10px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .swatch-label { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--text-dim); text-align: center; line-height: 1.3; }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+  .link-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+    color: #fff; text-decoration: none; padding: 10px 15px;
+    border-radius: 9px;
+  }
+  .link-btn.olv { background: var(--olv); }
+  .link-btn.ogro { background: var(--ogro); }
+  .link-btn.tmk { background: var(--tmk); }
+
+  .promo-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 640px) { .promo-grid { grid-template-columns: 1fr 1fr; } }
+  .promo-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .promo-badge { align-self: flex-start; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 9px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); }
+  .promo-card.vitrine .promo-badge { background: var(--ifood-soft); color: var(--ifood-red); border-color: var(--ifood-red); }
+  .promo-name { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 16.5px; margin: 0; }
+  .promo-desc { font-size: 13.5px; color: var(--text-dim); margin: 0; }
+  .promo-price { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; }
+  .promo-de { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--text-dim); text-decoration: line-through; }
+  .promo-por { font-family: "Fraunces", Georgia, serif; font-weight: 700; font-size: 19px; }
+  .promo-off { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ok); font-weight: 600; }
+
+  .shot-row { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 640px) { .shot-row { grid-template-columns: 1fr 1fr; } }
+  .shot { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+  .shot img { width: 100%; display: block; }
+  .shot .cap { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-dim); padding: 9px 13px; border-top: 1px solid var(--border); background: var(--surface-2); }
+
+  footer.doc-foot {
+    margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border);
+    font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--text-dim);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  @media (max-width: 560px) { .page { padding: 40px 16px 72px; } .block, .impact-card { padding: 18px; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="doc-head">
+    <p class="eyebrow">Grupo ROB · Øliver's + Ogro Steaks + Temakeria Universitária · iFood Ads</p>
+    <h1>iFood Black Friday<br />Grupo ROB Food</h1>
+    <p class="doc-sub">Nova ação do Grupo ROB no iFood, na semana da Black Friday: vitrine conjunta das marcas, vídeo ads e banners, agora com foco total em conversão.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Novembro 2026</span>
+      <span class="meta-chip">Semana da Black Friday · a partir de 23 ou 27/11 (a confirmar)</span>
+      <span class="meta-chip">Marcas juntas num só vídeo</span>
+    </div>
+  </header>
+
+  <section class="part">
+    <div class="part-head">
+      <span class="part-title ifood">Peças: Vídeo Ads + Banners</span>
+    </div>
+    <p class="part-note">O Grupo ROB entra na vitrine de Black Friday do iFood, com as marcas juntas, nos video ads da aba de restaurantes e nos banners de promoção. O Grupo ROB edita o vídeo e manda o direcionamento; o iFood monta o banner.</p>
+    <div class="impact-grid">
+      <div class="impact-card">
+        <p class="impact-cat">Categoria</p>
+        <p class="impact-name">Vídeo Ads</p>
+        <p class="impact-label">Impacto (estimativa de visualização)</p>
+        <p class="impact-value tbd">?</p>
+        <span class="status-tag pending">A confirmar com o iFood</span>
+      </div>
+      <div class="impact-card">
+        <p class="impact-cat">Categoria</p>
+        <p class="impact-name">Banners de promoção</p>
+        <p class="impact-label">Impacto (estimativa de visualização)</p>
+        <p class="impact-value tbd">?</p>
+        <span class="status-tag pending">A confirmar com o iFood</span>
+      </div>
+    </div>
+    <div class="channels-row">
+      <span><strong>In App</strong> · Aba Restaurantes + banners de promoção</span>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <span class="part-title ifood">Direcionamento da campanha</span>
+    </div>
+    <p class="part-note">Aprendizado da ação de outubro: o vídeo teve muito alcance e pouco clique. Agora a comunicação é direta e comercial, de Black Friday: a promoção na frente, o produto apetitoso e o pedido no iFood. Menos institucional, mais venda.</p>
+
+    <div class="block">
+      <p class="field-label" style="margin-bottom: 10px;">Abordagens sugeridas da campanha</p>
+      <p class="mote-value">BLACK FRIDAY DO GRUPO ROB NO IFOOD.</p>
+      <p class="field-value" style="margin-bottom: 18px;">Pizza e burger com até 35% OFF. Só nesta semana.</p>
+      <p class="mote-value">2 POR 1 É AGORA.</p>
+      <p class="field-value">2 Muçarelas médias por R$68,90 · 2 P.C.Q por R$59,90.</p>
+    </div>
+
+    <div class="block">
+      <p class="block-title">🎬 Vídeo Ads · direcionamento
+        <span class="status-tag pending">Em edição</span>
+      </p>
+      <p class="field-value">Base: o vídeo da ação de outubro, reeditado com pegada de oferta.</p>
+      <p class="field-value">• <b>Primeiros 2 segundos:</b> a oferta na tela (lettering grande "BLACK FRIDAY", "2 POR 1", "ATÉ 35% OFF"), sem abertura institucional.</p>
+      <p class="field-value">• <b>Meio:</b> cortes rápidos de produto (queijo puxando, burger montando) com o preço ou o % em cima de cada produto.</p>
+      <p class="field-value">• <b>Final:</b> logos das marcas + "Peça agora no iFood".</p>
+      <p class="field-value" style="margin-bottom: 18px;">• Vídeo curto, ritmo de anúncio, legenda na tela.</p>
+
+      <p class="block-title" style="margin-top: 8px;">🖼️ Banners · direcionamento</p>
+      <p class="field-value">• A oferta principal de cada marca em destaque (os 2 por 1), produto em primeiro plano e o selo de Black Friday.</p>
+      <p class="field-value" style="margin-bottom: 18px;">• Cada marca com a própria identidade dentro da peça conjunta, como na ação anterior.</p>
+    </div>
+
+    <div class="block">
+      <p class="block-title">🎨 Linguagem visual, elementos, cores, comunicação de cada marca
+        <span class="status-tag confirmed">Definido</span>
+      </p>
+      <p class="field-label" style="margin-bottom: 10px;">Referências visuais, montagem do banner (ação anterior)</p>
+      <div class="shot-row" style="margin-bottom: 22px;">
+        <div class="shot"><img src="ref1.png" alt="Referência 1" /><div class="cap">Referência 1</div></div>
+        <div class="shot"><img src="ref2.png" alt="Referência 2" /><div class="cap">Referência 2</div></div>
+      </div>
+      <div class="shot-row" style="margin-bottom: 22px;">
+        <div class="shot"><img src="ref3.png" alt="Referência 3" /><div class="cap">Referência 3</div></div>
+      </div>
+      <p class="field-label" style="margin-top: 4px;">Øliver's, cores</p>
+      <div class="palette-row" style="margin-bottom: 14px;">
+        <div class="swatch"><div class="swatch-color" style="background: #1a1a1a;"></div><span class="swatch-label">Preto</span></div>
+        <div class="swatch"><div class="swatch-color" style="background: #ffffff; border: 1px solid var(--border);"></div><span class="swatch-label">Branco</span></div>
+        <div class="swatch"><div class="swatch-color" style="background: #c7beac;"></div><span class="swatch-label">Tons neutros</span></div>
+      </div>
+      <p class="field-value">Comunicação: premium, foco no produto, na pizza artesanal.</p>
+      <p class="field-value" style="margin-bottom: 18px;">Tom de voz: experiência gastronômica, sem soberba.</p>
+
+      <p class="field-label">Ogro Steaks, cores</p>
+      <div class="palette-row" style="margin-bottom: 14px;">
+        <div class="swatch"><div class="swatch-color" style="background: #ffffff; border: 1px solid var(--border);"></div><span class="swatch-label">Branco</span></div>
+        <div class="swatch"><div class="swatch-color" style="background: #c0392b;"></div><span class="swatch-label">Vermelho</span></div>
+        <div class="swatch"><div class="swatch-color" style="background: #f3ede1;"></div><span class="swatch-label">Off-white</span></div>
+      </div>
+      <p class="field-value">Comunicação: exagerada e apetitosa.</p>
+      <p class="field-value">Produtos: close de carne, queijo derretido e montagem do lanche.</p>
+      <p class="field-value" style="margin-bottom: 18px;">Tom de voz: direto, focado em matar a fome.</p>
+
+      <p class="field-label">Temakeria Universitária, cores</p>
+      <div class="palette-row" style="margin-bottom: 14px;">
+        <div class="swatch"><div class="swatch-color" style="background: #1a1a1a;"></div><span class="swatch-label">Preto</span></div>
+        <div class="swatch"><div class="swatch-color" style="background: #e8701a;"></div><span class="swatch-label">Laranja</span></div>
+        <div class="swatch"><div class="swatch-color" style="background: #ffffff; border: 1px solid var(--border);"></div><span class="swatch-label">Branco</span></div>
+      </div>
+      <p class="field-value">Comunicação: "O japa mais rápido que você já viu."</p>
+      <p class="field-value">Produtos: salmão fresco chileno. Priorizar produtos crus, frescos, com entrega ágil e rápida.</p>
+      <p class="field-value">Tom de voz: ágil e direto, destacando a rapidez e o frescor do produto.</p>
+    
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <span class="part-title olv">Entregas e links, Øliver's</span>
+    </div>
+    <div class="block">
+      <div class="link-row">
+        <a class="link-btn olv" href="https://drive.google.com/drive/folders/12RKDmI7xgkE0CJ5YmLVWCaM_3Tn30TlY?usp=drive_link" target="_blank" rel="noopener">📁 Fotos do produto</a>
+        <a class="link-btn olv" href="https://drive.google.com/drive/folders/1VxGOJ_1MSTKGZpBdEL02vrNHS8GxNyk6?usp=drive_link" target="_blank" rel="noopener">🎨 ID visual</a>
+      </div>
+    </div>
+    <p class="field-label" style="margin: 18px 0 10px;">Produtos da ação</p>
+    <div class="promo-grid">
+      <div class="promo-card vitrine">
+        <span class="promo-badge">Tag 2x1</span>
+        <h4 class="promo-name">1 · 2 por 1 · Muçarela Média</h4>
+        <p class="promo-desc">Tag 2x1: duas pizzas médias de Muçarela.</p>
+        <div class="promo-price"><span class="promo-por">R$68,90</span><span class="promo-off">2x1</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">2 · Calabresa com Cebola Roxa</h4>
+        <p class="promo-desc">Pizza Grande de Calabresa com Cebola Roxa.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">3 · O Poderoso Combão</h4>
+        <p class="promo-desc">Pizza Salgada Grande + Refrigerante.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">4 · Combo Love Sessions</h4>
+        <p class="promo-desc">Pizza Salgada Média + Refrigerante.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">5 · Marguerita Grande Hits</h4>
+        <p class="promo-desc">Pizza Grande de Marguerita.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">6 · Muçarela Média Hits</h4>
+        <p class="promo-desc">Pizza Média de Muçarela.</p>
+        <div class="promo-price"><span class="promo-off">35% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">7 · Marguerita Média Hits</h4>
+        <p class="promo-desc">Pizza Média de Marguerita.</p>
+        <div class="promo-price"><span class="promo-off">35% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">8 · Nutella Pequena</h4>
+        <p class="promo-desc">Pizza doce Pequena de Nutella.</p>
+        <div class="promo-price"><span class="promo-off">35% off</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <span class="part-title ogro">Entregas e links, Ogro Steaks</span>
+    </div>
+    <div class="block">
+      <div class="link-row">
+        <a class="link-btn ogro" href="https://drive.google.com/drive/folders/16tKnCxR7aQWhwdEWOwMb5o3-swsuQeLv?usp=drive_link" target="_blank" rel="noopener">📁 Fotos do produto</a>
+        <a class="link-btn ogro" href="https://drive.google.com/drive/folders/1SSZuc2AXNS6H_Y6eSRDnInKtPO4EC0_Q?usp=drive_link" target="_blank" rel="noopener">🎨 ID visual</a>
+      </div>
+    </div>
+    <p class="field-label" style="margin: 18px 0 10px;">Produtos da ação</p>
+    <div class="promo-grid">
+      <div class="promo-card vitrine">
+        <span class="promo-badge">Tag 2x1</span>
+        <h4 class="promo-name">1 · 2 por 1 · P.C.Q</h4>
+        <p class="promo-desc">Tag 2x1: dois P.C.Q (Pão, Carne e Queijo).</p>
+        <div class="promo-price"><span class="promo-por">R$59,90</span><span class="promo-off">2x1</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">2 · Combo P.C.Q (Pão, Carne e Queijo)</h4>
+        <p class="promo-desc">P.C.Q (Pão, Carne e Queijo) + Batata + Bebida.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">3 · Combo Quarter Ogro</h4>
+        <p class="promo-desc">Quarter Ogro + Batata + Bebida.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">4 · Combo Ogro Festival</h4>
+        <p class="promo-desc">Ogro Festival + Batata + Bebida.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">5 · Combo Ogro GPT</h4>
+        <p class="promo-desc">Ogro GPT + Batata + Bebida.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+      <div class="promo-card">
+        <span class="promo-badge">Lista Black Friday</span>
+        <h4 class="promo-name">6 · Combo Notdog</h4>
+        <p class="promo-desc">Notdog + Batata + Bebida.</p>
+        <div class="promo-price"><span class="promo-off">25% off</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="part">
+    <div class="part-head">
+      <span class="part-title tmk">Entregas e links, Temakeria Universitária</span>
+    </div>
+    <div class="block">
+      <div class="link-row">
+        <a class="link-btn tmk" href="https://drive.google.com/drive/folders/1G421w744V_9FdNSxB__BzQy5brH4tsPN?usp=drive_link" target="_blank" rel="noopener">📁 Fotos do produto</a>
+        <a class="link-btn tmk" href="https://drive.google.com/drive/folders/1SXECLqmTkQnMI920L6Nfw3-FZ49mF4cN?usp=drive_link" target="_blank" rel="noopener">🎨 ID visual</a>
+      </div>
+    </div>
+    <p class="field-label" style="margin: 18px 0 10px;">Produtos da ação</p>
+    <p class="field-value"><span class="status-tag pending">A confirmar</span> Produtos e promoções da Temakeria a definir com a Estratégia.</p>
+  </section>
+
+  <footer style="margin-top:64px;font-size:13px;color:var(--text-dim);font-family:'IBM Plex Mono',monospace">iFood Black Friday · Grupo ROB Food · 11/11/2026</footer>
+</div>
+</body>
+</html>
